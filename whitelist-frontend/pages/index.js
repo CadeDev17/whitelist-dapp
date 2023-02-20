@@ -8,12 +8,16 @@ import { WHITELIST_CONTRACT_ADDRESS, abi } from "../constants";
 export default function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
   const [walletConnected, setWalletConnected] = useState(false);
+
   // joinedWhitelist keeps track of whether the current metamask address has joined the Whitelist or not
   const [joinedWhitelist, setJoinedWhitelist] = useState(false);
+
   // loading is set to true when we are waiting for a transaction to get mined
   const [loading, setLoading] = useState(false);
+
   // numberOfWhitelisted tracks the number of addresses's whitelisted
   const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
+
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef();
 
@@ -29,10 +33,12 @@ export default function Home() {
    *
    * @param {*} needSigner - True if you need the signer, default false otherwise
    */
+
   const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
     // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
     const provider = await web3ModalRef.current.connect();
+    
     const web3Provider = new providers.Web3Provider(provider);
 
     // If user is not connected to the Goerli network, let them know and throw an error
@@ -209,7 +215,7 @@ export default function Home() {
           {renderButton()}
         </div>
         <div>
-          <img className={styles.image} src="./crypto-devs.svg" />
+          <img className={styles.image} src="/whitelist-dapp-img.svg" />
         </div>
       </div>
 
